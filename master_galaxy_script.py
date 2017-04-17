@@ -102,5 +102,5 @@ bkgnd_file = "bkgnd_hdxi_1Msec_evt.fits" # the background file to use.
 # NOTE: Because we are specifying a background file, the other background
 # keywords are ignored regardless of their value!!
 
-soxs.instrument_simulator(simput_file, out_file, exp_time, args.inst, 
+soxs.instrument_simulator(simput_file, out_file, exp_time, instrument, 
                           sky_center, overwrite=True, bkgnd_file=bkgnd_file)
