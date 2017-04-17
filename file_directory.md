@@ -26,10 +26,10 @@ acisi_particle_bkgnd.dat
 
 ### ARF
 
-xrs_mucal_3x10.arf
-xrs_mucal_3x15.arf
-xrs_mucal_3x20.arf
-xrs_mucal_6x20.arf
+xrs_mucal_3x10.arf  
+xrs_mucal_3x15.arf  
+xrs_mucal_3x20.arf  
+xrs_mucal_6x20.arf  
 
 ### RMF
 
@@ -74,13 +74,13 @@ xifu_bkgnd.dat
 
 ### ARF
 
-acisi_aimpt_cy0.arf
-acisi_aimpt_cy18.arf
+acisi_aimpt_cy0.arf  
+acisi_aimpt_cy18.arf  
 
 ### RMF
 
-acisi_aimpt_cy0.rmf
-acisi_aimpt_cy18.rmf
+acisi_aimpt_cy0.rmf  
+acisi_aimpt_cy18.rmf  
 
 ### Particle Background
 
