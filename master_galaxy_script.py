@@ -72,6 +72,10 @@ sky_center = [30.0, 45.0] # in degrees
 # for an off-axis observation. 
 axis = "z"
 
+# Set up foreground absorption model
+nH = 0.02 # 10^20 atoms/cm**2
+tbabs_model = pyxsim.TBabsModel(nH)
+
 # Project the photons to a plane
 events = photons.project_photons(axis, absorb_model=tbabs_model,
                                  sky_center=sky_center)
