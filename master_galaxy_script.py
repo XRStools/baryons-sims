@@ -19,7 +19,15 @@ radius = (1.0, "Mpc")
 # radius.
 sp = ds.sphere(center, radius)
 
-# TODO: make a cut region to cut out high-density, low-temperature gas
+# Optionally, make a cut region from the sphere where we remove particles with
+# high density and/or low temperature. Note that for SPH you will need to make
+# sure you use the density units which are correct for the dataset, e.g. 10^10 Msun/kpc**3
+# or whatever they are, whereas for AMR datasets use CGS units below. 
+
+cr = sp.cut_region(["obj['density'] < 1.0e-25", "obj['temperature'] > 1.0e5"]) # for AMR
+# For SPH
+#dens_code = ds.quan(1.0e-25, "g/cm**3").to("code_mass/code_length**3").v
+#cr = sp.cut_region(["obj['PartType0', 'Density'] < %g" % dens_code, "obj['PartType0', 'Temperature'] > 1.0e5"])
 
 # This next part sets up the APEC model for the spectrum
 emin = 0.02 # minimum energy in keV
@@ -50,14 +58,14 @@ thermal_model = pyxsim.ThermalSourceModel(apec_model, kT_min=kT_min, kT_max=kT_m
 # source distribution of photons in 3D. To make it easy to decide how many 
 # photons to generate, we will set it by giving an exposure time and an area,
 # which should be larger than the values you intend to use for the instrument
-# you simulate. 
+# you simulate. We use the cut region defined above as our source region.
 
 redshift = 0.03 # the redshift of the source
 exp_time = 500000.0 # in seconds, this is 500 ksec
 area = 35000.0 # flat area in cm**2, just for generating initial source. Must be 
                # larger than peak of ARF for the instrument you're simulating
 
-photons = pyxsim.PhotonList.from_data_source(sp, redshift, area, exp_time, 
+photons = pyxsim.PhotonList.from_data_source(cr, redshift, area, exp_time, 
                                              thermal_model, center=center)
 
 # Save the photons to the file for re-use. We use the original filename as a base
