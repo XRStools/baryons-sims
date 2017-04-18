@@ -3,6 +3,14 @@ import pyxsim
 import soxs
 import numpy as np
 
+# The next few lines add a new microcalorimeter
+# spec with a 20 arcmin fov and 1 arcsec 
+mucal_wide = soxs.instrument_registry["mucal"].copy()
+mucal_wide["fov"] = 20.0
+mucal_wide["num_pixels"] = 1200
+mucal_wide["name"] = "mucal_wide"
+soxs.add_instrument_to_registry(new_mucal)
+
 # Load up the dataset using yt
 fn = "my_filename"
 ds = yt.load(fn)
